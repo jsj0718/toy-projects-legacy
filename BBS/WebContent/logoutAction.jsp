@@ -7,8 +7,11 @@
 <title>JSP 게시판 웹 사이트</title>
 </head>
 <body>
+	<%
+		session.invalidate();
+	%>
 	<script>
-		// login.jsp로 이동
+		alert("로그아웃에 성공했습니다.");
 		location.href = "main.jsp";
 	</script>
 </body>
