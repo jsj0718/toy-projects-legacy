@@ -38,8 +38,8 @@
 		<div class="collase navbar-collapse" id="bs-example-navbar-collapse-1">
 			<%-- 네비게이션 리스트 항목(1) --%>
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="main.jsp">메인</a>
-				<li><a href="bbs.jsp">게시판</a>
+				<li><a href="main.jsp">메인</a>
+				<li class="active"><a href="bbs.jsp">게시판</a>
 			</ul>
 			<%
 				if (userID == null) {
@@ -81,42 +81,30 @@
 			%>
 		</div>
 	</nav>
-	<%-- 메인 페이지 디자인 블록 --%>
+	<%-- 글쓰기 양식 블록 --%>
 	<div class="container">
-		<div class="jumbotron">
-			<div class="container">
-				<h1>웹 사이트 소개</h1>
-				<p>이 웹 사이트는 Bootstrap으로 만든 JSP 웹 사이트입니다. 최소한의 로직만을 사용하여 개발했습니다.</p>
-				<a class="btn btn-primary btn-pull" href="https://github.com/jsj0718" role="button">자세히 알아보기</a>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
-			<ol class="carousel-indicators">
-				<li data-target="#myCarosel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarosel" data-slide-to="1"></li>
-				<li data-target="#myCarosel" data-slide-to="2"></li>
-			</ol>
-			<div class="carousel-inner">
-				<div class="item active">
-					<img src="images/1.jpg">
-				</div>
-				<div class="item">
-					<img src="images/2.jpg">
-				</div>
-				<div class="item">
-					<img src="images/3.jpg">
-				</div>
-			</div>
-			<a class="left carousel-control" href="#myCarousel" data-slide="prev" onclick="$('#myCarousel').carousel('prev')">
-				<span class="glyphicon glyphicon-chevron-left"></span>
-          		<span class="sr-only">Previous</span>
-			</a>
-			<a class="right carousel-control" href="#myCarousel" data-slide="next" onclick="$('#myCarousel').carousel('next')">
-				<span class="glyphicon glyphicon-chevron-right"></span>
-         		 <span class="sr-only">Next</span>
-			</a>
+		<div class="row">
+			<form method="post" action="writeAction.jsp">
+				<table class="table table-striped" style="text-align : center; border : 1px solid #dddddd">
+					<%-- 테이블 제목 부분 --%>
+					<thead>
+						<tr>
+							<th colspan="2" style="background-color : #eeeeee; text-align : center;">게시판 글쓰기 양식</th>
+						</tr>
+					</thead>
+					<%-- 테이블 본문 부분 (글 제목, 글 내용) --%>
+					<tbody>
+						<tr>
+							<th><input type="text" class="form-control" placeholder="글 제목" name="bbsTitle" maxlength="50"></th>
+						</tr>
+						<tr>
+							<th><textarea class="form-control" placeholder="글 내용" name="bbsContent" maxlength="2048" style="height : 350px"></textarea></th>
+						</tr>
+					</tbody>
+				</table>
+				<%-- 글쓰기 제출 버튼 --%>
+				<input type="submit" class="btn btn-primary pull-right" value="글쓰기">
+			</form>
 		</div>
 	</div>
 	<%-- JS 호출 (순서 중요) --%>

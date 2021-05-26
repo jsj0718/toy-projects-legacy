@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.PrintWriter"%>
+<%@ page import="bbs.Bbs"%>
+<%@ page import="bbs.BbsDAO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +20,19 @@
 		if (session.getAttribute("userID") != null) {
 			userID = (String) session.getAttribute("userID");
 		}
+		int bbsID = 0;
+		if (request.getParameter("bbsID") != null) {
+			bbsID = Integer.parseInt(request.getParameter("bbsID"));
+		}
+		if (bbsID == 0) {
+			PrintWriter script = response.getWriter();
+			script.println("<script>");
+			script.println("alert('유효하지 않는 글입니다.')");
+			script.println("location.href = 'bbs.jsp'");
+			script.println("</script>");
+		}
+		
+		Bbs bbs = new BbsDAO().getBbs(bbsID);
 	%>
 	<%-- navigation 생성 (웹사이트의 구성을 보여줌) --%>
 	<nav class="navbar navbar-default" role="navigation">
@@ -38,8 +53,8 @@
 		<div class="collase navbar-collapse" id="bs-example-navbar-collapse-1">
 			<%-- 네비게이션 리스트 항목(1) --%>
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="main.jsp">메인</a>
-				<li><a href="bbs.jsp">게시판</a>
+				<li><a href="main.jsp">메인</a>
+				<li class="active"><a href="bbs.jsp">게시판</a>
 			</ul>
 			<%
 				if (userID == null) {
@@ -81,42 +96,46 @@
 			%>
 		</div>
 	</nav>
-	<%-- 메인 페이지 디자인 블록 --%>
+	<%-- 글 보기 블록 --%>
 	<div class="container">
-		<div class="jumbotron">
-			<div class="container">
-				<h1>웹 사이트 소개</h1>
-				<p>이 웹 사이트는 Bootstrap으로 만든 JSP 웹 사이트입니다. 최소한의 로직만을 사용하여 개발했습니다.</p>
-				<a class="btn btn-primary btn-pull" href="https://github.com/jsj0718" role="button">자세히 알아보기</a>
-			</div>
-		</div>
-	</div>
-	<div class="container">
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
-			<ol class="carousel-indicators">
-				<li data-target="#myCarosel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarosel" data-slide-to="1"></li>
-				<li data-target="#myCarosel" data-slide-to="2"></li>
-			</ol>
-			<div class="carousel-inner">
-				<div class="item active">
-					<img src="images/1.jpg">
-				</div>
-				<div class="item">
-					<img src="images/2.jpg">
-				</div>
-				<div class="item">
-					<img src="images/3.jpg">
-				</div>
-			</div>
-			<a class="left carousel-control" href="#myCarousel" data-slide="prev" onclick="$('#myCarousel').carousel('prev')">
-				<span class="glyphicon glyphicon-chevron-left"></span>
-          		<span class="sr-only">Previous</span>
-			</a>
-			<a class="right carousel-control" href="#myCarousel" data-slide="next" onclick="$('#myCarousel').carousel('next')">
-				<span class="glyphicon glyphicon-chevron-right"></span>
-         		 <span class="sr-only">Next</span>
-			</a>
+		<div class="row">
+			<table class="table table-striped" style="text-align : center; border : 1px solid #dddddd">
+				<%-- 테이블 제목 부분 --%>
+				<thead>
+					<tr>
+						<th colspan="3" style="background-color : #eeeeee; text-align : center;">게시판 글 보기</th>
+					</tr>
+				</thead>
+				<%-- 테이블 본문 부분 (글 제목, 작성자, 작성일자, 글 내용) --%>
+				<tbody>
+					<tr>
+						<th style="width: 20%;">글 제목</th>
+						<th colspan="2"><%= bbs.getBbsTitle().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></th>
+					</tr>
+					<tr>
+						<th>작성자</th>
+						<th colspan="2"><%= bbs.getUserID() %></th>
+					</tr>
+					<tr>
+						<th>작성일자</th>
+						<th colspan="2"><%= bbs.getBbsDate().substring(0, 11) + bbs.getBbsDate().substring(11, 13) + "시 " + bbs.getBbsDate().substring(14, 16) + "분" %></th>
+					</tr>
+					<tr>
+						<th>글 내용</th>
+						<th colspan="2" style="min-height: 200px; text-align: left;"><%= bbs.getBbsContent().replaceAll(" ", "&nbsp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br>") %></th>
+					</tr>
+				</tbody>
+			</table>
+			<a href="bbs.jsp" class="btn btn-primary">목록</a>
+			<%-- userID가 동일한 경우 수정, 삭제 기능 부여하기 --%>
+			<%
+				if (userID != null && userID.equals(bbs.getUserID())) {
+			%>
+					<a href="update.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">수정</a>
+					<a onclick="return confirm('정말로 삭제하시겠습니까?')" href="deleteAction.jsp?bbsID=<%= bbsID %>" class="btn btn-primary">삭제</a>
+			<%
+				}
+			%>
 		</div>
 	</div>
 	<%-- JS 호출 (순서 중요) --%>
