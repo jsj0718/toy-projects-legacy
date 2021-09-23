@@ -37,7 +37,7 @@
 		email = rs.getString("email");
 	}
 %>
-<table border="2">
+<table>
 	<tr>
 		<td>제목</td>
 		<td><%= subject %></td>

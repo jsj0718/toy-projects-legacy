@@ -33,7 +33,7 @@
     %>
 <hr>
 <form method="post" action="order_proc.jsp">
-<table border=1 cellpadding=5>
+<table>
 <tr>
 <th>주문</th>
 <th>저자</th>
@@ -58,7 +58,7 @@
 </table>
 <br> <input type="submit" value="주문"> <input type="reset" value="초기화">
 </form>
-<a href="<%= request.getRequestURI() %>"><h3>다시 주문하기</h3></a>
+<a href="<%= request.getRequestURI() %>">다시 주문하기</a>
 <%
     rset.close();
     stmt.close();

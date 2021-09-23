@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Window 객체 연습</title>
+</head>
+<body>
+<script>
+	function openWin() {
+		window.open("notice.html", "newWin", "width=200, height=300, toobar=no, scrollbars=auto, status=no");
+	}
+	
+	function movePage() {
+		window.location = "notice.html";
+	}
+</script>
+	<div align="center">
+		<input type="button" value="새창열기" onclick="openWin()">
+		<br><br>
+		<input type="button" value="문서이동" onclick="movePage()">	
+	</div>
+</body>
+</html>

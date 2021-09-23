@@ -25,7 +25,7 @@
 	ResultSet rset;
 %>
 
-<table border=2>
+<table>
 <tr>
 <th>저자</th>
 <th>제목</th>
@@ -54,6 +54,6 @@
 	}
 %>
 </table>
-<a href = "order.jsp"><h3>주문 화면으로 돌아가기</h3></a>
+<a href = "order.jsp">주문 화면으로 돌아가기</a>
 </body>
 </html>

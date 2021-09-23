@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>스타일시트로 문서 꾸미기</title>
+<style type="text/css">
+	body {
+		background-repeat : no-repeat;
+		background-position : center 5px;
+	}
+	
+	td {
+		border-width : 0px;
+		font-family : 굴림;
+		font-size : 9pt;
+		font-weight : 900;
+	}
+	
+	input {
+		border-style : solid;
+		border-width : 1px;
+		border-color : #8C5DCD;
+		font-size : 9pt;
+		font-family : 굴림;
+		color : #8C5DCD;
+	}
+	
+	textarea {
+		border-style : solid;
+		border-width : 1px;
+		border-color : #8C5DCD;
+		font-size : 9pt;
+		font-family : 굴림;
+		color : black;
+	}
+</style>
+</head>
+<body>
+	<div align="center">
+		<form name="form1" action="" method="POST">
+			<table>
+				<tr>
+					<td>이름</td> 
+					<td><input type="text" name="name"></td>
+				</tr>
+				<tr>
+					<td>이메일</td> 
+					<td><input type="text" name="email"></td>
+				</tr>
+				<tr>
+					<td>하고 싶은 말</td>
+					<td><textarea name="comment" rows="10" cols="50"></textarea></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

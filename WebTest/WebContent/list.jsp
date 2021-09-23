@@ -12,7 +12,7 @@
 </head>
 <body>
 	<h3>게시글 리스트</h3>
-	<table border="2">
+	<table>
 		<tr>
 			<td>번호</td>
 			<td>제목</td>

@@ -1,0 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+    
+<h1>include 지시자 연습</h1>
+<p>외부에 존재하는 파일을 현재 문서에 삽입</p>
