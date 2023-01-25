@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 서버와 관련한 환경설정을 위해 web.xml 파일 생성 -->
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>UserChat</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <!-- 서블릿 연결 -->
+  <servlet>
+  	<servlet-name>UserRegisterServlet</servlet-name>
+  	<servlet-class>user.UserRegisterServlet</servlet-class>
+  </servlet>
+  <!-- 사용자가 어떤 URL을 통해 서블릿에 접근할지 명시 -->
+  <servlet-mapping>
+  	<servlet-name>UserRegisterServlet</servlet-name>
+  	<url-pattern>/userRegister</url-pattern>
+  </servlet-mapping>
+</web-app>
