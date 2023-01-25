@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- JSP 페이지 뿐만 아니라 HTML 페이지에도 인코딩을 utf-8로 설정해야 한글이 깨지지 않는다. -->
+<meta charset="utf-8">
+<title>정보 입력 페이지</title>
+</head>
+<body>
+	<form name="form1" action="textForm.jsp" method="GET">
+	 	<p>아이디 : <input type="text" name="my_id"></p>
+		<p>비밀번호 : <input type="password" name="my_pw"></p>
+		<p>이름 : <input type="text" name="my_name"></p>
+		<p> <input type="hidden" name="hidden" value=""> ㅇㄴ </p>
+		
+		<p>취미 <br>
+		<input type="checkbox" value="movie" name="my_hobby">영화감상 <br>
+		<input type="checkbox" value="music" name="my_hobby">음악감상 <br>
+		<input type="checkbox" value="game" name="my_hobby">게임 <br>
+		</p>
+		
+		<p>메일 수령 여부 <br>
+		<input type="radio" name="mail" value="yes">예
+		<input type="radio" name="mail" value="no">아니요 <br>
+		</p>
+		
+		<p>파일 첨부 <br>
+		<input type="file" name="file" size="10">
+		</p>
+		
+		<input type="submit" value="등록">
+		<input type="reset" value="초기화">
+	</form> 
+</body>
+</html>
